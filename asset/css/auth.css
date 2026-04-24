@@ -1,0 +1,402 @@
+/* =========================================================
+   Terra Store — Auth Styles
+   Font: Playfair Display (headings) + DM Sans (body)
+   Theme: Warm earth tones — terracotta, cream, deep brown
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --terra: #c1613a;
+  --terra-dark: #9b4a2b;
+  --terra-light: #e8856a;
+  --cream: #faf6f0;
+  --sand: #ede3d4;
+  --brown: #3d2314;
+  --brown-mid: #6b3f25;
+  --text: #2e1a0e;
+  --text-muted: #8a6e5e;
+  --white: #ffffff;
+  --error-bg: #fef0ee;
+  --error-border: #e07060;
+  --success-bg: #effaf4;
+  --success-border: #4caf7d;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 8px 40px rgba(61, 35, 20, 0.13);
+  --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "DM Sans", sans-serif;
+  background: var(--cream);
+  color: var(--text);
+}
+
+/* ── Layout ─────────────────────────────────────── */
+.auth-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── Left decorative panel ──────────────────────── */
+.auth-panel {
+  position: relative;
+  width: 42%;
+  background: linear-gradient(
+    150deg,
+    var(--brown) 0%,
+    var(--terra-dark) 60%,
+    var(--terra-light) 130%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 3rem;
+  flex-shrink: 0;
+}
+
+.panel-content {
+  position: relative;
+  z-index: 2;
+  color: var(--cream);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  color: var(--cream);
+  font-family: "Playfair Display", serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  letter-spacing: 0.02em;
+}
+
+.brand-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--cream);
+  color: var(--terra-dark);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 1.1rem;
+}
+
+.panel-tagline {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 2.5rem;
+  color: var(--cream);
+}
+
+.panel-tagline em {
+  font-style: italic;
+  color: #ffd8c0;
+}
+
+.panel-perks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.panel-perks li {
+  font-size: 0.95rem;
+  font-weight: 300;
+  opacity: 0.88;
+  letter-spacing: 0.01em;
+}
+
+/* decorative orbs */
+.panel-orb {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.panel-orb--1 {
+  width: 420px;
+  height: 420px;
+  background: var(--cream);
+  bottom: -160px;
+  right: -160px;
+}
+
+.panel-orb--2 {
+  width: 220px;
+  height: 220px;
+  background: var(--terra-light);
+  top: -60px;
+  left: -80px;
+}
+
+/* ── Form side ──────────────────────────────────── */
+.auth-form-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 2rem;
+  overflow-y: auto;
+  background: var(--cream);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 520px;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 2.8rem 3rem;
+  box-shadow: var(--shadow);
+}
+
+.auth-card--centered {
+  max-width: 440px;
+}
+
+.auth-card__header {
+  margin-bottom: 2rem;
+}
+
+.auth-card__header h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--brown);
+  margin-bottom: 0.4rem;
+}
+
+.auth-card__header p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.auth-card__header a {
+  color: var(--terra);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-card__header a:hover {
+  text-decoration: underline;
+}
+
+/* ── Flash Messages ─────────────────────────────── */
+.flash {
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.4rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.flash p {
+  margin: 0.15rem 0;
+}
+
+.flash--error {
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  color: #9b3020;
+}
+
+.flash--success {
+  background: var(--success-bg);
+  border: 1px solid var(--success-border);
+  color: #1e6b45;
+}
+
+/* ── Form Elements ──────────────────────────────── */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--brown-mid);
+  margin-bottom: 0.45rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.optional {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.label-link {
+  font-size: 0.82rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--terra);
+  text-decoration: none;
+}
+
+.label-link:hover {
+  text-decoration: underline;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid var(--sand);
+  border-radius: var(--radius-sm);
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--cream);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+  outline: none;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--terra);
+  box-shadow: 0 0 0 3px rgba(193, 97, 58, 0.15);
+  background: var(--white);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #bba898;
+  font-weight: 300;
+}
+
+/* Password + eye toggle */
+.input-eye {
+  position: relative;
+}
+
+.input-eye input {
+  padding-right: 3rem;
+}
+
+.eye-btn {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--text-muted);
+  padding: 0;
+  transition: opacity var(--transition);
+}
+
+.eye-btn:hover {
+  opacity: 0.7;
+}
+
+/* Checkbox */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--terra);
+  cursor: pointer;
+}
+
+/* ── Submit Button ───────────────────────────────── */
+.btn-submit {
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  background: linear-gradient(135deg, var(--terra-dark), var(--terra));
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    opacity var(--transition);
+  box-shadow: 0 4px 18px rgba(193, 97, 58, 0.3);
+  margin-top: 0.5rem;
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(193, 97, 58, 0.4);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+  opacity: 0.9;
+}
+
+/* ── Responsive ─────────────────────────────────── */
+@media (max-width: 768px) {
+  .auth-panel {
+    display: none;
+  }
+
+  .auth-form-side {
+    padding: 1.5rem 1rem;
+  }
+
+  .auth-card {
+    padding: 2rem 1.4rem;
+    box-shadow: none;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
